@@ -1,11 +1,20 @@
 //list.cpp
 //XiHao Wu and Christopher Lianides
+//Perm number: 4338109 and 8899338
 #include "list.h"
+
 //constructor
 list::list(string input) {
 	head = NULL;
 	str = input;
 }
+
+//destructor
+list::~list() {
+	delete head;
+}
+
+//print functions
 
 string list::print_postfix_list() {
 	return head->print_postfix();
@@ -18,7 +27,7 @@ string list::print_infix_list() {
 	return head->print_infix();
 }
 
-//creator
+//list creator
 void list::create_list() {
 
 	head = new Node(PLUS,NULL,NULL);
@@ -27,7 +36,7 @@ void list::create_list() {
 	current = head;
 
 	for(int i = 1; i<str.length(); i++) {
-		//
+		//if the cursor is pointing to the left parenthsis again
 		if (str[i] == '(') {
 			Node *p = new Node(PLUS,NULL,NULL);
 			p->setparent(current);
@@ -36,11 +45,10 @@ void list::create_list() {
 			if (current->getoperand1() == NULL) {
 				current->setoperand1(p);
 			} else {
-				
 				current->setoperand2(p);
-			
 			}
 			current = p;
+			
 		// if the cursor is pointing to the operator
 		} else if (str[i] == '+') {
 			current->setdata_op(PLUS);

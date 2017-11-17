@@ -1,5 +1,6 @@
 //node.h
 //XiHao Wu and Christopher Lianides
+//Perm number: 4338109 and 8899338
 #ifndef NODE_H
 #define NODE_H
 #include<string>
@@ -18,6 +19,7 @@ union data_type {
 };
 
 class Node {
+
 public:
 		// Constructor
     Node(char var = 'x');
@@ -39,8 +41,8 @@ public:
     void setparent(Node*p);
 
         //accessor
-    Node* getoperand1() {return operand1;}
-    Node* getoperand2() {return operand2;}
+    Node* getoperand1();
+    Node* getoperand2();
     Node* getparent();
 
         //function that print stuff
@@ -52,11 +54,11 @@ public:
     char print_operator() const;
 
 private:
-        node_type node_t;
-        data_type data;
-        Node* operand1;
-        Node* operand2;
-        Node* parent;
+    node_type node_t;
+    data_type data;
+    Node* operand1;
+    Node* operand2;
+    Node* parent;
 
 };
 
