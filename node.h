@@ -1,5 +1,10 @@
+//node.h
+//XiHao Wu and Christopher Lianides
 #ifndef NODE_H
 #define NODE_H
+#include<string>
+#include <cstdlib>
+#include <iostream>
 
 using namespace std;
 
@@ -13,26 +18,46 @@ union data_type {
 };
 
 class Node {
-	public:
+public:
 		// Constructor
-        Node(char var = 'x');
-        Node(operator_type op = PLUS, Node* operand1 = NULL, Node* operand2 = NULL);
-        Node(int val = 0);
+    Node(char var = 'x');
+    Node(operator_type op = PLUS, Node* operand1 = NULL, Node* operand2 = NULL);
+    Node(int val = 0);
         // Destructor
-        ~Node();
-      
-        string print_infix() const;
-        string print_prefix() const;
-        string print_postfix() const;
-        string int_to_string() const;
-        char print_operator() const;
+    ~Node();
+    
+        //Mutator
+    void setnode_t(node_type type);
 
+    void setdata_op(operator_type x);
+    void setdata_var();
+    void setdata_val(int x);
 
-    private:
+    void setoperand1(Node*p);
+    void setoperand2(Node*p);
+
+    void setparent(Node*p);
+
+        //accessor
+    Node* getoperand1() {return operand1;}
+    Node* getoperand2() {return operand2;}
+    Node* getparent();
+
+        //function that print stuff
+    string print_infix() const;
+    string print_prefix() const;
+    string print_postfix() const;
+
+    string int_to_string() const;
+    char print_operator() const;
+
+private:
         node_type node_t;
         data_type data;
         Node* operand1;
         Node* operand2;
+        Node* parent;
+
 };
 
 #endif
